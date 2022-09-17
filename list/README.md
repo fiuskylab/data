@@ -32,7 +32,7 @@ Implementation of the list data structure may provide some of the following oper
     - Removes a value from the Linked List.
 - [x] `Prepend(v T)`
     - Add an item to the end of the List.
-- [ ] `Tail() (*List[T])`
+- [x] `Tail() (*List[T])`
     - Returns the List without the first item.
 - [x] `ValueAt(i int) (T, error)` 
     - Returns a Value at position `i`.

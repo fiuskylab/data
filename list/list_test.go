@@ -146,6 +146,37 @@ func TestLastInstance(t *testing.T) {
 	})
 }
 
+func TestTail(t *testing.T) {
+	list := New[int]()
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		actual := list.Tail()
+
+		require.Nil(actual)
+	})
+
+	t.Run("List w/ 1 item", func(t *testing.T) {
+		require := require.New(t)
+
+		list.Append(1)
+
+		actual := list.Tail()
+
+		require.Nil(actual)
+	})
+
+	t.Run("Non Nil Tail", func(t *testing.T) {
+		require := require.New(t)
+
+		list.Append(2)
+
+		actual := list.Tail()
+
+		require.NotNil(actual)
+	})
+}
+
 func TestValueAt(t *testing.T) {
 	list := New[int]()
 	t.Run("Empty List", func(t *testing.T) {

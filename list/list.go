@@ -73,6 +73,11 @@ func (l *List[T]) Prepend(v T) {
 	*l = *newL
 }
 
+// Tail - returns the List without the first item.
+func (l *List[T]) Tail() *List[T] {
+	return l.Next
+}
+
 // ValueAt - Returns a Value at position p.
 func (l *List[T]) ValueAt(p int) (T, error) {
 	current := *l
