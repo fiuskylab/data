@@ -76,6 +76,57 @@ func TestHead(t *testing.T) {
 	})
 }
 
+func TestListAt(t *testing.T) {
+	list := New[int]()
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		expectedErr := fmt.Errorf(errEmptyList)
+		actualVal, actualErr := list.ListAt(100)
+
+		require.Nil(actualVal)
+		require.Equal(expectedErr, actualErr)
+	})
+
+	t.Run("Shorter Than", func(t *testing.T) {
+		require := require.New(t)
+
+		pos := 100
+
+		list.Append(1)
+
+		expectedErr := fmt.Errorf(errShorterThan, pos)
+		actualVal, actualErr := list.ListAt(pos)
+
+		require.Nil(actualVal)
+		require.Equal(expectedErr, actualErr)
+	})
+
+	t.Run("Found Value", func(t *testing.T) {
+		require := require.New(t)
+
+		pos := 0
+
+		list.Append(2)
+
+		actualVal, actualErr := list.ListAt(pos)
+
+		require.NotNil(actualVal)
+		require.Nil(actualErr)
+	})
+
+	t.Run("Found Nil Value", func(t *testing.T) {
+		require := require.New(t)
+
+		pos := 1
+
+		actualVal, actualErr := list.ListAt(pos)
+
+		require.Nil(actualVal)
+		require.Nil(actualErr)
+	})
+}
+
 func TestPrepend(t *testing.T) {
 	list := New[int]()
 

@@ -62,6 +62,23 @@ func (l *List[T]) Len() int {
 	}
 }
 
+// ListAt - returns the List instance at position `p`.
+func (l *List[T]) ListAt(p int) (*List[T], error) {
+	current := *l
+	if l.Next == nil && l.Value == nil {
+		return nil, fmt.Errorf(errEmptyList)
+	}
+	for i := 0; i <= p; i++ {
+		if i == p {
+			return current.Next, nil
+		}
+		if current.Next == nil {
+			break
+		}
+		current = *current.Next
+	}
+	return nil, fmt.Errorf(errShorterThan, p)
+}
 // Prepend will add a Value to end of the List.
 func (l *List[T]) Prepend(v T) {
 	currentList := *l

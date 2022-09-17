@@ -26,7 +26,7 @@ Implementation of the list data structure may provide some of the following oper
     - Returns the first element of the List.
 - [x] `Len() (int)`
     - Returns the amount of items in the List.
-- [ ] `ListAt(i int) (*List[T], error)` 
+- [x] `ListAt(i int) (*List[T], error)` 
     - Returns the List instance at position `i`.
 - [ ] `Pop(i int) (T, error)`
     - Removes a value from the Linked List.
