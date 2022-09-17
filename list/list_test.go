@@ -24,7 +24,7 @@ func TestAppend(t *testing.T) {
 		expected := 1
 		list.Append(expected)
 
-		require.Equal(expected, *list.value)
+		require.Equal(expected, *list.Value)
 	})
 
 	t.Run("Non Empty List", func(t *testing.T) {
@@ -32,7 +32,32 @@ func TestAppend(t *testing.T) {
 		expected := 2
 		list.Append(expected)
 
-		require.Equal(expected, *list.next.value)
+		require.Equal(expected, *list.Next.Value)
+	})
+}
+
+func TestPrepend(t *testing.T) {
+	list := New[int]()
+
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		expected := 1
+
+		list.Prepend(expected)
+
+		require.Equal(expected, *list.Value)
+	})
+
+	t.Run("List w/ 1 Item", func(t *testing.T) {
+		require := require.New(t)
+
+		expected := 2
+
+		list.Prepend(expected)
+
+		require.Equal(expected, *list.Value)
+		require.Equal(1, *list.Next.Value)
 	})
 }
 
@@ -44,23 +69,23 @@ func TestLastInstance(t *testing.T) {
 
 		actual := list.lastInstance()
 
-		require.Nil(actual.next)
-		require.Nil(actual.value)
+		require.Nil(actual.Next)
+		require.Nil(actual.Value)
 	})
 
 	t.Run("List w/ 1 item", func(t *testing.T) {
 		require := require.New(t)
 
 		expected := List[int]{
-			value: helper.ToPtr(1),
+			Value: helper.ToPtr(1),
 		}
 
 		list.Append(1)
 
 		actual := list.lastInstance()
 
-		require.Nil(actual.next)
-		require.Equal(*expected.value, *actual.value)
+		require.Nil(actual.Next)
+		require.Equal(*expected.Value, *actual.Value)
 	})
 
 	for i := 2; i <= 10; i++ {
@@ -71,12 +96,12 @@ func TestLastInstance(t *testing.T) {
 		require := require.New(t)
 
 		expected := List[int]{
-			value: helper.ToPtr(10),
+			Value: helper.ToPtr(10),
 		}
 
 		actual := list.lastInstance()
 
-		require.Nil(actual.next)
-		require.Equal(*expected.value, *actual.value)
+		require.Nil(actual.Next)
+		require.Equal(*expected.Value, *actual.Value)
 	})
 }

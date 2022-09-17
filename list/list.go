@@ -1,10 +1,10 @@
 package list
 
 type (
-	// List aka Linked List
+	// List aka Linked List.
 	List[T any] struct {
-		value *T
-		next  *List[T]
+		Value *T
+		Next  *List[T]
 	}
 )
 
@@ -13,24 +13,35 @@ func New[T any]() *List[T] {
 	return &List[T]{}
 }
 
-// Append will Append a value
+// Append will Append a Value.
 func (l *List[T]) Append(v T) {
-	if l.value == nil {
-		l.value = &v
+	if l.Value == nil {
+		l.Value = &v
 		return
 	}
 
-	l.next = &List[T]{
-		value: &v,
+	l.Next = &List[T]{
+		Value: &v,
 	}
+}
+
+// Prepend will add a Value to end of the List.
+func (l *List[T]) Prepend(v T) {
+	currentList := *l
+	newL := New[T]()
+
+	newL.Value = &v
+	newL.Next = &currentList
+
+	*l = *newL
 }
 
 func (l *List[T]) lastInstance() *List[T] {
 	current := l
 	for {
-		if current.next == nil {
+		if current.Next == nil {
 			return current
 		}
-		current = current.next
+		current = current.Next
 	}
 }
