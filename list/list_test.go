@@ -54,6 +54,27 @@ func TestEmpty(t *testing.T) {
 	})
 }
 
+func TestHead(t *testing.T) {
+	list := New[int]()
+
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		require.Nil(list.Head())
+	})
+
+	t.Run("List Not Empty", func(t *testing.T) {
+		require := require.New(t)
+
+		expected := 1
+		list.Append(expected)
+
+		actual := list.Head()
+
+		require.Equal(expected, *actual)
+	})
+}
+
 func TestPrepend(t *testing.T) {
 	list := New[int]()
 

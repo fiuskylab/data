@@ -30,6 +30,11 @@ func (l *List[T]) Empty() bool {
 	return (l.Value == nil) && (l.Next == nil)
 }
 
+// Head returns List's head.
+func (l *List[T]) Head() *T {
+	return l.Value
+}
+
 func (l *List[T]) lastInstance() *List[T] {
 	current := l
 	for {

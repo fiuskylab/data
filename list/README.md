@@ -18,7 +18,7 @@ Implementation of the list data structure may provide some of the following oper
 - [ ] Concurrency safety
 - [x] `Empty() (bool)`
     - Checks if List is empty.
-- [ ] `Head() (T)`
+- [x] `Head() (T)`
     - Returns the first element of the List.
 - [ ] `ItemAt(i int) (T, error)` 
     - Returns a Value at position `i`.
