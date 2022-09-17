@@ -24,3 +24,13 @@ func (l *List[T]) Append(v T) {
 		value: &v,
 	}
 }
+
+func (l *List[T]) lastInstance() *List[T] {
+	current := l
+	for {
+		if current.next == nil {
+			return current
+		}
+		current = current.next
+	}
+}
