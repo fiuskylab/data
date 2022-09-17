@@ -15,21 +15,27 @@ Implementation of the list data structure may provide some of the following oper
     - List constructor.
 - [x] `Append(v T)`
     - Add an item to the end of the List.
+- [ ] Benchmarks
 - [ ] Concurrency safety
+    - Data Race
+    - Memory Leaks
+    - etc.
 - [x] `Empty() (bool)`
     - Checks if List is empty.
 - [x] `Head() (T)`
     - Returns the first element of the List.
-- [ ] `ItemAt(i int) (T, error)` 
-    - Returns a Value at position `i`.
 - [x] `Len() (int)`
     - Returns the amount of items in the List.
 - [ ] `ListAt(i int) (*List[T], error)` 
     - Returns the List instance at position `i`.
+- [ ] `Pop(i int) (T, error)`
+    - Removes a value from the Linked List.
 - [x] `Prepend(v T)`
     - Add an item to the end of the List.
 - [ ] `Tail() (*List[T])`
     - Returns the List without the first item.
+- [x] `ValueAt(i int) (T, error)` 
+    - Returns a Value at position `i`.
 - [ ] 
 - [ ] 
 - [ ] 

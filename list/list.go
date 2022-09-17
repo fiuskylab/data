@@ -1,5 +1,9 @@
 package list
 
+import (
+	"fmt"
+)
+
 type (
 	// List aka Linked List.
 	List[T any] struct {
@@ -67,4 +71,22 @@ func (l *List[T]) Prepend(v T) {
 	newL.Next = &currentList
 
 	*l = *newL
+}
+
+// ValueAt - Returns a Value at position p.
+func (l *List[T]) ValueAt(p int) (T, error) {
+	current := *l
+	if l.Value == nil {
+		return *new(T), fmt.Errorf(errEmptyList)
+	}
+	for i := 0; i <= p; i++ {
+		if i == p {
+			return *current.Value, nil
+		}
+		if current.Next == nil {
+			break
+		}
+		current = *current.Next
+	}
+	return *new(T), fmt.Errorf(errShorterThan, p)
 }
