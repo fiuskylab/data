@@ -19,7 +19,7 @@ Implementation of the list data structure may provide some of the following oper
     - [x] New
     - [x] Prepend
     - [x] Append
-- [ ] Concurrency safety
+- [x] Concurrency safety
     - Data Race
     - Memory Leaks
     - etc.
