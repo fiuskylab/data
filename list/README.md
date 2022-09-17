@@ -15,7 +15,10 @@ Implementation of the list data structure may provide some of the following oper
     - List constructor.
 - [x] `Append(v T)`
     - Add an item to the end of the List.
-- [ ] Benchmarks
+- [x] Benchmarks
+    - [x] New
+    - [x] Prepend
+    - [x] Append
 - [ ] Concurrency safety
     - Data Race
     - Memory Leaks
