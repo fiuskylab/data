@@ -28,7 +28,7 @@ Implementation of the list data structure may provide some of the following oper
     - Returns the amount of items in the List.
 - [x] `ListAt(i int) (*List[T], error)` 
     - Returns the List instance at position `i`.
-- [ ] `Pop(i int) (T, error)`
+- [x] `Pop(i int) (T, error)`
     - Removes a value from the Linked List.
 - [x] `Prepend(v T)`
     - Add an item to the end of the List.
@@ -36,6 +36,3 @@ Implementation of the list data structure may provide some of the following oper
     - Returns the List without the first item.
 - [x] `ValueAt(i int) (T, error)` 
     - Returns a Value at position `i`.
-- [ ] 
-- [ ] 
-- [ ] 

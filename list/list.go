@@ -79,6 +79,34 @@ func (l *List[T]) ListAt(p int) (*List[T], error) {
 	}
 	return nil, fmt.Errorf(errShorterThan, p)
 }
+
+// Pop - removes a value from the Linked List.
+func (l *List[T]) Pop(p int) (T, error) {
+	current := *l
+	currentPtr := l
+	if l.Next == nil && l.Value == nil {
+		return *new(T), fmt.Errorf(errEmptyList)
+	}
+	for i := 0; i <= p; i++ {
+		if i == p {
+			val := *current.Value
+			if currentPtr.Next != nil {
+				currentPtr.Value = currentPtr.Next.Value
+				currentPtr.Next = currentPtr.Next.Next
+			} else {
+				currentPtr.Value = nil
+			}
+			return val, nil
+		}
+		if current.Next == nil {
+			break
+		}
+		current = *current.Next
+		currentPtr = currentPtr.Next
+	}
+	return *new(T), fmt.Errorf(errShorterThan, p)
+}
+
 // Prepend will add a Value to end of the List.
 func (l *List[T]) Prepend(v T) {
 	currentList := *l

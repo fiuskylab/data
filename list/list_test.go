@@ -127,6 +127,57 @@ func TestListAt(t *testing.T) {
 	})
 }
 
+func TestPop(t *testing.T) {
+	list := New[int]()
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		expectedErr := fmt.Errorf(errEmptyList)
+		_, actualErr := list.Pop(100)
+
+		require.Equal(expectedErr, actualErr)
+	})
+
+	t.Run("Shorter Than", func(t *testing.T) {
+		require := require.New(t)
+
+		pos := 100
+
+		list.Append(1)
+
+		expectedErr := fmt.Errorf(errShorterThan, pos)
+		_, actualErr := list.Pop(pos)
+
+		require.Equal(expectedErr, actualErr)
+	})
+
+	t.Run("Found Value", func(t *testing.T) {
+		require := require.New(t)
+
+		pos := 0
+
+		list.Append(2)
+
+		actualVal, actualErr := list.Pop(pos)
+
+		require.NotNil(actualVal)
+		require.Nil(actualErr)
+	})
+
+	t.Run("Found Nil Value", func(t *testing.T) {
+		require := require.New(t)
+		list.Append(3)
+
+		pos := 1
+		expectedVal := 3
+
+		actualVal, actualErr := list.Pop(pos)
+
+		require.Equal(expectedVal, actualVal)
+		require.Nil(actualErr)
+	})
+}
+
 func TestPrepend(t *testing.T) {
 	list := New[int]()
 
