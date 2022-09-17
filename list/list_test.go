@@ -36,6 +36,24 @@ func TestAppend(t *testing.T) {
 	})
 }
 
+func TestEmpty(t *testing.T) {
+	list := New[int]()
+
+	t.Run("Empty List", func(t *testing.T) {
+		require := require.New(t)
+
+		require.True(list.Empty())
+	})
+
+	t.Run("List Not Empty", func(t *testing.T) {
+		require := require.New(t)
+
+		list.Append(1)
+
+		require.False(list.Empty())
+	})
+}
+
 func TestPrepend(t *testing.T) {
 	list := New[int]()
 

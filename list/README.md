@@ -11,12 +11,12 @@ Implementation of the list data structure may provide some of the following oper
     - an operation for accessing the element at a given index.
 
 ### TODO:
-- [ ] Concurrency safety
 - [x] `New[T]`
     - List constructor.
 - [x] `Append(v T)`
     - Add an item to the end of the List.
-- [ ] `Empty() (bool)`
+- [ ] Concurrency safety
+- [x] `Empty() (bool)`
     - Checks if List is empty.
 - [ ] `Head() (T)`
     - Returns the first element of the List.
@@ -30,3 +30,6 @@ Implementation of the list data structure may provide some of the following oper
     - Add an item to the end of the List.
 - [ ] `Tail() (*List[T])`
     - Returns the List without the first item.
+- [ ] 
+- [ ] 
+- [ ] 
