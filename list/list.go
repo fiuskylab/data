@@ -35,11 +35,11 @@ func (l *List[T]) Head() *T {
 	return l.Value
 }
 
-func (l *List[T]) lastInstance() *List[T] {
+func (l *List[T]) Last() *T {
 	current := l
 	for {
 		if current.Next == nil {
-			return current
+			return current.Value
 		}
 		current = current.Next
 	}

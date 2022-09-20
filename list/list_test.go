@@ -192,16 +192,15 @@ func TestPrepend(t *testing.T) {
 	})
 }
 
-func TestLastInstance(t *testing.T) {
+func TestLast(t *testing.T) {
 	list := New[int]()
 
 	t.Run("Empty List", func(t *testing.T) {
 		require := require.New(t)
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Nil(actual.Value)
+		require.Nil(actual)
 	})
 
 	t.Run("List w/ 1 item", func(t *testing.T) {
@@ -213,10 +212,9 @@ func TestLastInstance(t *testing.T) {
 
 		list.Append(1)
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Equal(*expected.Value, *actual.Value)
+		require.Equal(*expected.Value, *actual)
 	})
 
 	for i := 2; i <= 10; i++ {
@@ -230,10 +228,10 @@ func TestLastInstance(t *testing.T) {
 			Value: helper.ToPtr(10),
 		}
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Equal(*expected.Value, *actual.Value)
+		require.NotNil(actual)
+		require.Equal(*expected.Value, *actual)
 	})
 }
 
