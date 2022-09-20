@@ -8,23 +8,23 @@ type (
 	}
 
 	item[K comparable, T any] struct {
-		key   K
-		value *T
+		Key   K
+		Value *T
 	}
 )
 
 // NewArray returns a associative array instance.
 func NewArray[K comparable, T any]() *Array[K, T] {
 	return &Array[K, T]{
-		items: make([]item[K, T], 10),
+		items: []item[K, T]{},
 	}
 }
 
 // Put adds an item to current Associative Array.
 func (a *Array[K, T]) Put(key K, value T) {
 	a.items = append(a.items, item[K, T]{
-		key:   key,
-		value: &value,
+		Key:   key,
+		Value: &value,
 	})
 }
 
@@ -32,8 +32,8 @@ func (a *Array[K, T]) Put(key K, value T) {
 // currently O(n).
 func (a *Array[K, T]) Get(key K) *T {
 	for _, i := range a.items {
-		if i.key == key {
-			return i.value
+		if i.Key == key {
+			return i.Value
 		}
 	}
 
@@ -45,8 +45,12 @@ func (a *Array[K, T]) Get(key K) *T {
 // 	- false: if item wasn't found
 func (a *Array[K, T]) Delete(key K) bool {
 	for p, i := range a.items {
-		if i.key == key {
-			a.items = append(a.items[0:p], a.items[p-1:]...)
+		if i.Key == key {
+			if p == 0 {
+				a.items = a.items[p:]
+				return true
+			}
+			a.items = append(a.items[:p], a.items[p-1:]...)
 			return true
 		}
 	}
