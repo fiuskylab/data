@@ -28,7 +28,8 @@ func (a *Array[K, T]) Put(key K, value T) {
 	})
 }
 
-// Get retrieves an item associated with given Key.
+// Get retrieves an item associated with given Key,
+// currently O(n).
 func (a *Array[K, T]) Get(key K) *T {
 	for _, i := range a.items {
 		if i.key == key {
