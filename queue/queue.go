@@ -31,6 +31,6 @@ func (q *Queue[T]) Get() *T {
 
 // Pop - Retrieves Queue's first item and
 // removes it.
-func (q *Queue[T]) Pop() (T, error) {
+func (q *Queue[T]) Pop() *T {
 	return q.l.Pop(0)
 }

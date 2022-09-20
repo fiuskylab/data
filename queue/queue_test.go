@@ -70,11 +70,9 @@ func TestPop(t *testing.T) {
 	t.Run("Pop Empty Queue", func(t *testing.T) {
 		require := require.New(t)
 
-		expectedValue := 0
-		actualValue, actualErr := q.Pop()
+		actual := q.Pop()
 
-		require.Equal(expectedValue, actualValue)
-		require.NotNil(actualErr)
+		require.Nil(actual)
 	})
 
 	t.Run("Pop w/ 1 value", func(t *testing.T) {
@@ -83,9 +81,8 @@ func TestPop(t *testing.T) {
 		expectedValue := 10
 		q.Push(expectedValue)
 
-		actualValue, actualErr := q.Pop()
+		actual := q.Pop()
 
-		require.Equal(expectedValue, actualValue)
-		require.Nil(actualErr)
+		require.NotNil(actual)
 	})
 }
