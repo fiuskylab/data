@@ -1,9 +1,5 @@
 package list
 
-import (
-	"fmt"
-)
-
 type (
 	// List aka Linked List.
 	List[T any] struct {
@@ -39,11 +35,11 @@ func (l *List[T]) Head() *T {
 	return l.Value
 }
 
-func (l *List[T]) lastInstance() *List[T] {
+func (l *List[T]) Last() *T {
 	current := l
 	for {
 		if current.Next == nil {
-			return current
+			return current.Value
 		}
 		current = current.Next
 	}
@@ -63,29 +59,29 @@ func (l *List[T]) Len() int {
 }
 
 // ListAt - returns the List instance at position `p`.
-func (l *List[T]) ListAt(p int) (*List[T], error) {
+func (l *List[T]) ListAt(p int) *List[T] {
 	current := *l
 	if l.Next == nil && l.Value == nil {
-		return nil, fmt.Errorf(errEmptyList)
+		return nil
 	}
 	for i := 0; i <= p; i++ {
 		if i == p {
-			return current.Next, nil
+			return current.Next
 		}
 		if current.Next == nil {
 			break
 		}
 		current = *current.Next
 	}
-	return nil, fmt.Errorf(errShorterThan, p)
+	return nil
 }
 
 // Pop - removes a value from the Linked List.
-func (l *List[T]) Pop(p int) (T, error) {
+func (l *List[T]) Pop(p int) *T {
 	current := *l
 	currentPtr := l
 	if l.Next == nil && l.Value == nil {
-		return *new(T), fmt.Errorf(errEmptyList)
+		return nil
 	}
 	for i := 0; i <= p; i++ {
 		if i == p {
@@ -96,7 +92,7 @@ func (l *List[T]) Pop(p int) (T, error) {
 			} else {
 				currentPtr.Value = nil
 			}
-			return val, nil
+			return &val
 		}
 		if current.Next == nil {
 			break
@@ -104,7 +100,7 @@ func (l *List[T]) Pop(p int) (T, error) {
 		current = *current.Next
 		currentPtr = currentPtr.Next
 	}
-	return *new(T), fmt.Errorf(errShorterThan, p)
+	return nil
 }
 
 // Prepend will add a Value to end of the List.
@@ -124,19 +120,19 @@ func (l *List[T]) Tail() *List[T] {
 }
 
 // ValueAt - Returns a Value at position p.
-func (l *List[T]) ValueAt(p int) (T, error) {
+func (l *List[T]) ValueAt(p int) *T {
 	current := *l
 	if l.Value == nil {
-		return *new(T), fmt.Errorf(errEmptyList)
+		return nil
 	}
 	for i := 0; i <= p; i++ {
 		if i == p {
-			return *current.Value, nil
+			return current.Value
 		}
 		if current.Next == nil {
 			break
 		}
 		current = *current.Next
 	}
-	return *new(T), fmt.Errorf(errShorterThan, p)
+	return nil
 }

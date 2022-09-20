@@ -1,7 +1,6 @@
 package list
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/fiuskylab/data/helper"
@@ -81,11 +80,9 @@ func TestListAt(t *testing.T) {
 	t.Run("Empty List", func(t *testing.T) {
 		require := require.New(t)
 
-		expectedErr := fmt.Errorf(errEmptyList)
-		actualVal, actualErr := list.ListAt(100)
+		actualVal := list.ListAt(100)
 
 		require.Nil(actualVal)
-		require.Equal(expectedErr, actualErr)
 	})
 
 	t.Run("Shorter Than", func(t *testing.T) {
@@ -95,11 +92,9 @@ func TestListAt(t *testing.T) {
 
 		list.Append(1)
 
-		expectedErr := fmt.Errorf(errShorterThan, pos)
-		actualVal, actualErr := list.ListAt(pos)
+		actualVal := list.ListAt(pos)
 
 		require.Nil(actualVal)
-		require.Equal(expectedErr, actualErr)
 	})
 
 	t.Run("Found Value", func(t *testing.T) {
@@ -109,10 +104,9 @@ func TestListAt(t *testing.T) {
 
 		list.Append(2)
 
-		actualVal, actualErr := list.ListAt(pos)
+		actualVal := list.ListAt(pos)
 
 		require.NotNil(actualVal)
-		require.Nil(actualErr)
 	})
 
 	t.Run("Found Nil Value", func(t *testing.T) {
@@ -120,10 +114,9 @@ func TestListAt(t *testing.T) {
 
 		pos := 1
 
-		actualVal, actualErr := list.ListAt(pos)
+		actualVal := list.ListAt(pos)
 
 		require.Nil(actualVal)
-		require.Nil(actualErr)
 	})
 }
 
@@ -132,10 +125,9 @@ func TestPop(t *testing.T) {
 	t.Run("Empty List", func(t *testing.T) {
 		require := require.New(t)
 
-		expectedErr := fmt.Errorf(errEmptyList)
-		_, actualErr := list.Pop(100)
+		actualVal := list.Pop(100)
 
-		require.Equal(expectedErr, actualErr)
+		require.Nil(actualVal)
 	})
 
 	t.Run("Shorter Than", func(t *testing.T) {
@@ -145,10 +137,9 @@ func TestPop(t *testing.T) {
 
 		list.Append(1)
 
-		expectedErr := fmt.Errorf(errShorterThan, pos)
-		_, actualErr := list.Pop(pos)
+		actual := list.Pop(pos)
 
-		require.Equal(expectedErr, actualErr)
+		require.Nil(actual)
 	})
 
 	t.Run("Found Value", func(t *testing.T) {
@@ -158,10 +149,9 @@ func TestPop(t *testing.T) {
 
 		list.Append(2)
 
-		actualVal, actualErr := list.Pop(pos)
+		actualVal := list.Pop(pos)
 
 		require.NotNil(actualVal)
-		require.Nil(actualErr)
 	})
 
 	t.Run("Found Nil Value", func(t *testing.T) {
@@ -171,10 +161,9 @@ func TestPop(t *testing.T) {
 		pos := 1
 		expectedVal := 3
 
-		actualVal, actualErr := list.Pop(pos)
+		actualVal := list.Pop(pos)
 
-		require.Equal(expectedVal, actualVal)
-		require.Nil(actualErr)
+		require.Equal(expectedVal, *actualVal)
 	})
 }
 
@@ -203,16 +192,15 @@ func TestPrepend(t *testing.T) {
 	})
 }
 
-func TestLastInstance(t *testing.T) {
+func TestLast(t *testing.T) {
 	list := New[int]()
 
 	t.Run("Empty List", func(t *testing.T) {
 		require := require.New(t)
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Nil(actual.Value)
+		require.Nil(actual)
 	})
 
 	t.Run("List w/ 1 item", func(t *testing.T) {
@@ -224,10 +212,9 @@ func TestLastInstance(t *testing.T) {
 
 		list.Append(1)
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Equal(*expected.Value, *actual.Value)
+		require.Equal(*expected.Value, *actual)
 	})
 
 	for i := 2; i <= 10; i++ {
@@ -241,10 +228,10 @@ func TestLastInstance(t *testing.T) {
 			Value: helper.ToPtr(10),
 		}
 
-		actual := list.lastInstance()
+		actual := list.Last()
 
-		require.Nil(actual.Next)
-		require.Equal(*expected.Value, *actual.Value)
+		require.NotNil(actual)
+		require.Equal(*expected.Value, *actual)
 	})
 }
 
@@ -284,12 +271,9 @@ func TestValueAt(t *testing.T) {
 	t.Run("Empty List", func(t *testing.T) {
 		require := require.New(t)
 
-		expectedVal := 0
-		expectedErr := fmt.Errorf(errEmptyList)
-		actualVal, actualErr := list.ValueAt(100)
+		actual := list.ValueAt(100)
 
-		require.Equal(expectedVal, actualVal)
-		require.Equal(expectedErr, actualErr)
+		require.Nil(actual)
 	})
 
 	t.Run("Shorter Than", func(t *testing.T) {
@@ -299,12 +283,9 @@ func TestValueAt(t *testing.T) {
 
 		list.Append(1)
 
-		expectedVal := 0
-		expectedErr := fmt.Errorf(errShorterThan, pos)
-		actualVal, actualErr := list.ValueAt(pos)
+		actual := list.ValueAt(pos)
 
-		require.Equal(expectedVal, actualVal)
-		require.Equal(expectedErr, actualErr)
+		require.Nil(actual)
 	})
 
 	t.Run("Found Value", func(t *testing.T) {
@@ -314,10 +295,9 @@ func TestValueAt(t *testing.T) {
 
 		list.Append(2)
 
-		expectedVal := 2
-		actualVal, actualErr := list.ValueAt(pos)
+		expected := 2
+		actual := list.ValueAt(pos)
 
-		require.Equal(expectedVal, actualVal)
-		require.Nil(actualErr)
+		require.Equal(expected, *actual)
 	})
 }
