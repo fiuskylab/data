@@ -3,21 +3,21 @@ _"[...] a heap is a specialized tree-based data structure which is essentially a
 
 ## Operations
 - [ ] Basic
+  - [ ] DeleteMax - Deletes maximum item
+  - [ ] DeleteMin - Deletes minimum item
+  - [ ] ExtractMax - Retrives and deletes maximum item
+  - [ ] ExtractMin - Retrives and deletes minimum item
   - [ ] FindMax - Retrives maximum item
   - [ ] FindMin - Retrives minimum item
   - [ ] Insert - Adds an Item
-  - [ ] ExtractMax - Retrives and deletes maximum item
-  - [ ] ExtractMin - Retrives and deletes minimum item
-  - [ ] DeleteMax - Deletes maximum item
-  - [ ] DeleteMin - Deletes minimum item
   - [ ] Replace - Replaces given item value for other
 - [ ] Creation
-  - [x] New - Heap constructor
   - [ ] Heapfy - Create a heap from an array
   - [ ] Merge - Merges two heaps and returns one.
+  - [x] New - Heap constructor
 - [ ] Inspection
-  - [ ] Size - Returns the amount of items in Heap
   - [ ] IsEmpty - Returns if Heap is empty or not
+  - [ ] Size - Returns the amount of items in Heap
 
 ## Useful links
 - [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure))
